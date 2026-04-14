@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xlvexx.mediahub.mapper.ParseRateLimitMapper">
+
+    <!-- 原子递增：不存在则插入 count=1，已存在则 count+1 -->
+    <insert id="upsertIncrement">
+        INSERT INTO parse_rate_limit (ip, stat_date, count)
+        VALUES (#{ip}, #{date}, 1)
+        ON DUPLICATE KEY UPDATE count = count + 1
+    </insert>
+
+</mapper>

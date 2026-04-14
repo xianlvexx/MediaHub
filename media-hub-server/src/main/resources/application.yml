@@ -1,0 +1,51 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: prod
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/media_hub?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: hsf1206453X#@!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+  servlet:
+    multipart:
+      max-file-size: 2GB
+      max-request-size: 2GB
+  sql:
+    init:
+      mode: never
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: cn.xlvexx.mediahub.entity
+  type-enums-package: cn.xlvexx.mediahub.enums
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+
+app:
+  ytdlp:
+    path: /usr/local/bin/yt-dlp
+    cookies-file: /home/video/cookies.txt
+  download:
+    dir: /home/video/downloads
+    max-concurrent: 5
+    queue-capacity: 10
+  cleanup:
+    file-retain-hours: 2
+    scan-interval-ms: 600000
+  rate-limit:
+    parse-per-ip-per-minute: 10
+  cache:
+    video-info-ttl-minutes: 60
+  auth:
+    token-expire-hours: 48
+  inpaint:
+    python-path: /opt/mediahub/venv/bin/python
