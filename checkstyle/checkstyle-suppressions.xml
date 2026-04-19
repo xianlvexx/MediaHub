@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+
+    <!-- 测试类：放开魔法数字、方法长度、参数数量、Javadoc 限制 -->
+    <suppress checks="MagicNumber|MethodLength|ParameterNumber|MissingJavadocType"
+              files=".*Test\.java$"/>
+
+    <!-- 入口类：放开魔法数字 -->
+    <suppress checks="MagicNumber"
+              files=".*Application\.java$"/>
+
+    <!-- Mapper 接口：无需 Javadoc -->
+    <suppress checks="MissingJavadocType"
+              files=".*Mapper\.java$"/>
+
+    <!-- 枚举/状态/类型/错误码：允许数字字面量 -->
+    <suppress checks="MagicNumber"
+              files=".*Enum\.java$|.*Status\.java$|.*Type\.java$|.*Code\.java$"/>
+
+    <!-- 配置类：构造参数可超过 5 个 -->
+    <suppress checks="ParameterNumber"
+              files=".*Config\.java$|.*Configuration\.java$|.*Properties\.java$"/>
+
+</suppressions>
